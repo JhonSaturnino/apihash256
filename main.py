@@ -3,7 +3,7 @@ from fastapi import FastAPI, HTTPException
 
 app = FastAPI()
 
-@app.get("/processar_dados")
+@app.post("/processar_dados")
 def calcular_hash(nome: str, telefone: str, email: str):
     if not (nome and telefone and email):
         raise HTTPException(status_code=400, detail='Erro: Nome, telefone e email são campos obrigatórios.')
