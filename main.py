@@ -47,4 +47,5 @@ def calcular_hash(nome: str, telefone: str, email: str, nomeevento: str, tokenme
     if response.status_code == 200:
        return response.status_code
     else:
-        return response.status_code
+        return raise HTTPException(status_code=response.status_code, detail='Erro: ao enviar info ao facebook')
+       
