@@ -26,7 +26,7 @@ def calcular_hash(nome: str, telefone: str, email: str, nomeevento: str, tokenme
         "data": [
         {   
             "action_source": "website",
-            "event_name": pythonapi,
+            "event_name": nomeevento,
             "event_time": data_hora_formatada,
             "user_data": {
                 "em": email_hash,
@@ -48,4 +48,4 @@ def calcular_hash(nome: str, telefone: str, email: str, nomeevento: str, tokenme
            return response.status_code
         else:
             raise HTTPException(status_code=response.status_code, detail='Erro: ao enviar info ao facebook')
-       
+   
