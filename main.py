@@ -16,14 +16,14 @@ def calcular_hash(nome: str, telefone: str, email: str, nomeevento: str, tokenme
     telefone_hash = hashlib.sha256(telefone.encode()).hexdigest()
     email_hash = hashlib.sha256(email.encode()).hexdigest()
 
-    
-    url = f"https://graph.facebook.com/v18.0/{idpixel}/events?&access_token={tokenmeta}"
+    if nome_hash and telefone_hash and email_hash:
+        url = f"https://graph.facebook.com/v18.0/{idpixel}/events?&access_token={tokenmeta}"
 
-    agora = datetime.datetime.now()
-    milissegundos_desde_epoch = int(agora.timestamp() * 1000)
+        agora = datetime.datetime.now()
+        milissegundos_desde_epoch = int(agora.timestamp() * 1000)
    
-    dados = {
-    "data": [
+        dados = {
+        "data": [
         {
             "event_name": nomeevento,
             "event_time": milissegundos_desde_epoch,
@@ -40,12 +40,12 @@ def calcular_hash(nome: str, telefone: str, email: str, nomeevento: str, tokenme
 }
 
 
-    dados_json = json.dumps(dados)
-    headers = {'Content-Type': 'application/json'}
-    response = requests.post(url, data=dados_json, headers=headers)
+        dados_json = json.dumps(dados)
+        headers = {'Content-Type': 'application/json'}
+        response = requests.post(url, data=dados_json, headers=headers)
 
-    if response.status_code == 200:
-       return response.status_code
-    else:
-        raise HTTPException(status_code=response.status_code, detail='Erro: ao enviar info ao facebook')
+        if response.status_code == 200:
+           return response.status_code
+        else:
+            raise HTTPException(status_code=response.status_code, detail='Erro: ao enviar info ao facebook')
        
