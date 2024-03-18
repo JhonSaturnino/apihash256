@@ -27,7 +27,7 @@ def calcular_hash(nome: str, telefone: str, email: str, nomeevento: str, tokenme
         {
             "event_name": nomeevento,
             "event_time": milissegundos_desde_epoch,
-            "action_source": "chat",
+            "action_source": "website",
             "user_data": {
                 "em": email_hash,
                 "ph": telefone_hash,
