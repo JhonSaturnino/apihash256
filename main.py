@@ -20,14 +20,14 @@ def calcular_hash(nome: str, telefone: str, email: str, nomeevento: str, tokenme
         url = f"https://graph.facebook.com/v18.0/{idpixel}/events?&access_token={tokenmeta}"
 
         agora = datetime.datetime.now()
-        milissegundos_desde_epoch = int(agora.timestamp() * 1000)
+        data_hora_formatada = agora.isoformat()
    
         dados = {
         "data": [
-        {
-            "event_name": nomeevento,
-            "event_time": milissegundos_desde_epoch,
+        {   
             "action_source": "website",
+            "event_name": pythonapi,
+            "event_time": data_hora_formatada,
             "user_data": {
                 "em": email_hash,
                 "ph": telefone_hash,
