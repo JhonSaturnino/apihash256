@@ -5,18 +5,6 @@ import json
 import datetime
 
 app = FastAPI()
-@app.get("/docs", include_in_schema=False)
-async def custom_docs():
-    return {
-        "info": {
-            "title": "Minha API",
-            "description": "API para envio de marcações ao pixel da Meta.",
-            "contact": {
-                "name": "Jhonnatan Santana",
-                "phone": "5511973809701"
-            }
-        }
-    }
 
 @app.post("/processar_dados")
 def calcular_hash(nome: str, telefone: str, email: str, nomeevento: str, tokenmeta: str, idpixel: str):
