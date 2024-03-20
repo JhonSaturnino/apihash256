@@ -7,7 +7,7 @@ import datetime
 app = FastAPI()
 
 @app.post("/processar_dados")
-def calcular_hash(nome: str, telefone: str, email: str, nomeevento: str, tokenmeta: str, idpixel: str):
+def calcular_hash(nome: str, telefone: str, email: str, nomeevento: str, tokenmeta: str, idpixel: str, fonte: str):
     if not (nome and telefone and email):
         raise HTTPException(status_code=400, detail='Erro: Nome, telefone e email são campos obrigatórios.')
     
@@ -34,6 +34,9 @@ def calcular_hash(nome: str, telefone: str, email: str, nomeevento: str, tokenme
                 "fn": [
                     nome_hash
                 ]
+            },
+            "custom_data": {
+                "content_name": fonte
             }
         }
     ]
@@ -50,7 +53,7 @@ def calcular_hash(nome: str, telefone: str, email: str, nomeevento: str, tokenme
             raise HTTPException(status_code=response.status_code, detail='Erro: ao enviar info ao facebook')
 
 @app.post("/teste")
-def teste_pixel(id_test: str, nome: str, telefone: str, email: str, nomeevento: str, tokenmeta: str, idpixel: str):
+def teste_pixel(id_test: str, nome: str, telefone: str, email: str, nomeevento: str, tokenmeta: str, idpixel: str, fonte: str):
     if not (nome and telefone and email):
         raise HTTPException(status_code=400, detail='Erro: Nome, telefone e email são campos obrigatórios.')
     
@@ -77,6 +80,9 @@ def teste_pixel(id_test: str, nome: str, telefone: str, email: str, nomeevento: 
                 "fn": [
                     nome_hash
                 ]
+            },
+            "custom_data": {
+                "content_name": fonte
             }
         }
     ],
@@ -92,5 +98,3 @@ def teste_pixel(id_test: str, nome: str, telefone: str, email: str, nomeevento: 
            return response.status_code
         else:
             raise HTTPException(status_code=response.status_code, detail='Erro: ao enviar info ao facebook')
- 
-   
