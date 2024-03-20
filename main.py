@@ -9,7 +9,7 @@ app = FastAPI(title="API Marcação de Pixel",
     version="1.0")
 
 @app.post("/processar_dados")
-def calcular_hash(nome: str, telefone: str, email: str, nomeevento: str, tokenmeta: str, idpixel: str, fonte: str):
+def marcar_pixel(nome: str, telefone: str, email: str, nomeevento: str, tokenmeta: str, idpixel: str, fonte: str):
     if not (nome and telefone and email):
         raise HTTPException(status_code=400, detail='Erro: Nome, telefone e email são campos obrigatórios.')
     
