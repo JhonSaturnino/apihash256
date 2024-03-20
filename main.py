@@ -4,7 +4,9 @@ import requests
 import json
 import datetime
 
-app = FastAPI()
+app = FastAPI(title="API Marcação de Pixel",
+    description="Esta é uma API para processar dados e enviar eventos para o Pixel da Meta. Criado por Jhonnatan Santana",
+    version="1.0")
 
 @app.post("/processar_dados")
 def calcular_hash(nome: str, telefone: str, email: str, nomeevento: str, tokenmeta: str, idpixel: str, fonte: str):
